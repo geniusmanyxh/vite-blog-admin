@@ -36,4 +36,11 @@ export default defineConfig({
   server: {
     port: 8443,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `$injectedColor: orange;`,
+      }
+    }
+  }
 })

@@ -18,13 +18,13 @@ const routers: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'index',
-    component: () => import('../components/HelloWorld.vue'),
-    redirect: '/test',
+    // component: () => import('../components/HelloWorld.vue'),
+    redirect: '/desktop',
     children: [
       {
-        path: 'test',
-        name: 'test',
-        component: () => import('../components/Test.vue'),
+        path: 'desktop',
+        name: 'desktop',
+        component: () => import('../views/desktop/index.vue'),
       },
     ],
   },
