@@ -28,7 +28,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [NaiveUiResolver()],
-      dirs: ['src/components'],
+      // dirs: ['src/components'],
     }),
     Unocss(),
   ],
