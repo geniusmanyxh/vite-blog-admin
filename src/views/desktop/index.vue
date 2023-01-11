@@ -5,17 +5,10 @@
       <slot name="header">header</slot>
     </n-layout-header>
     <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>
-      <n-layout-sider
-        content-style="padding: 24px;"
-        :native-scrollbar="false"
-        bordered
-        collapse-mode="transform"
-        :collapsed-width="40"
-        :width="240"
-        show-trigger="bar"
-      >
-      <slot name="sider">sider</slot>
-      </n-layout-sider>
+      <slot name="sider">
+        <my-sider/>
+      </slot>
+     
       <n-layout :native-scrollbar="false">
         <n-layout-content content-style="padding: 24px;">
           <slot name="content">content</slot>
@@ -35,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+import mySider from './sider/index.vue'
 
 </script>
 
