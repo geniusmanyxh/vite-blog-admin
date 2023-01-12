@@ -28,6 +28,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [NaiveUiResolver()],
+      dirs:'src/mycomponents'
       // dirs: ['src/components'],
     }),
     Unocss(),
@@ -35,6 +36,11 @@ export default defineConfig({
   // 这里变更一下端口
   server: {
     port: 8443,
+  },
+  resolve: {
+    alias: {
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+    }
   },
   css: {
     preprocessorOptions: {
