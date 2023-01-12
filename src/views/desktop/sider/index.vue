@@ -91,7 +91,7 @@ export default defineComponent({
   setup() {
     return {
       activeKey: ref<string | null>(null),
-      collapsed: ref(true),
+      collapsed: ref(false),
       menuOptions,
       defaultExpandedKeys: ['fish', 'braise'],
     }
