@@ -24,4 +24,7 @@ export default () =>
   Unocss({
     safelist,
     presets: [presetUno(), presetAttributify(), presetIcons()],
+    shortcuts: {
+      
+    }
   });

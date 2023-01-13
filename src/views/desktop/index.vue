@@ -6,7 +6,7 @@
       :theme="theme"
     >
       <n-layout position="absolute">
-        <n-layout-header style="height: 64px; padding: 24px" bordered>
+        <n-layout-header style="height: 64px; padding: 10px" bordered>
           <slot name="header">
             <my-header @switchTheme="switchTheme" @switchLang="switchLang"></my-header>
           </slot>
@@ -19,7 +19,7 @@
           <n-layout :native-scrollbar="false">
             <n-layout-content content-style="padding: 24px;">
               <slot name="content">
-                <div v-for="i in 100" :key="i">1</div>
+                <div v-for="i in 100" :key="i">内容</div>
               </slot>
               <n-layout-footer
                 position="absolute"
