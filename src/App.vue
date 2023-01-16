@@ -1,6 +1,6 @@
 
 <template>
-<div><RouterView/></div>
+<div ><RouterView/></div>
 </template>
 <style lang="scss">
 * {

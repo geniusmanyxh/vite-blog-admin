@@ -19,15 +19,15 @@ const routers: Array<RouteRecordRaw> = [
     path: '/',
     name: 'index',
     // component: () => import('../components/HelloWorld.vue'),
-    redirect: '/desktop',
+    redirect: '/login',
     children: [
       {
-        path: '/login',
+        path: 'login',
         name: 'login',
         component : () => import('../views/login/index.vue')
       },
       {
-        path: '/register',
+        path: 'register',
         name: 'register',
         component : () => import('../views/register/index.vue')
       },
