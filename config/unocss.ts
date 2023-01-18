@@ -1,5 +1,6 @@
 import { presetUno, presetAttributify, presetIcons } from "unocss";
 import Unocss from "unocss/vite";
+import transformerDirective from '@unocss/transformer-directives'
 
 const colors = [
   "white",
@@ -24,6 +25,8 @@ export default () =>
   Unocss({
     safelist,
     presets: [presetUno(), presetAttributify(), presetIcons()],
+    //@ts-ignore
+    transformers: [transformerDirective()],
     shortcuts: {
       
     }

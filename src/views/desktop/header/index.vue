@@ -50,7 +50,7 @@
     </div>
     <!-- 个人头像 -->
     <div>
-      <n-dropdown :options="options">
+      <n-dropdown :options="options" :on-select="dropdownSelect">
         <n-avatar
       round
       size="small"
@@ -64,9 +64,10 @@
 </template>
 
 <script setup lang="ts">
+import {useRouter} from 'vue-router'
 import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { NIcon } from 'naive-ui'
+import { DropdownOption, NIcon } from 'naive-ui'
 import { toggleFull, isFull } from 'tj-jstools'
 import {
   Bulb,
@@ -77,6 +78,8 @@ import {
   Pencil as EditIcon,
   LogOutOutline as LogoutIcon,
 } from '@vicons/ionicons5'
+
+const router = useRouter()
 
 const { t, locale } = useI18n() // use as global scope
 const emit = defineEmits(['switchTheme', 'switchLang'])
@@ -91,7 +94,7 @@ onMounted(() => {
   }
 })
 
-
+// 下拉菜单
 const renderIcon = (icon: Component) => {
   return () => {
     return h(NIcon, null, {
@@ -117,6 +120,13 @@ const options = reactive([
     icon: renderIcon(LogoutIcon),
   },
 ])
+
+const dropdownSelect = (key:number|string,opts:DropdownOption) => {
+  console.log(key, opts)
+  if (key === 'logout') {
+    router.push('/login')
+  }
+}
 
 // 切换语言
 const currentLanguage = ref('English')
