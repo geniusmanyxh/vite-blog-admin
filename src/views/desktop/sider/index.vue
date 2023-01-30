@@ -1,5 +1,6 @@
 <template>
   <n-layout-sider
+    :native-scrollbar="false"
     bordered
     collapse-mode="width"
     :collapsed-width="64"
@@ -9,12 +10,14 @@
     @collapse="collapsed = true"
     @expand="collapsed = false"
   >
+  <!-- {{ t('nav.console') }} -->
     <n-menu
       v-model:value="activeKey"
       :collapsed="collapsed"
       :collapsed-width="64"
       :collapsed-icon-size="22"
       :options="menuOptions"
+      @update:value="clickMenu"
     />
   </n-layout-sider>
 </template>
@@ -24,76 +27,131 @@ import { defineComponent, h, Component } from 'vue'
 import { NIcon } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 import {
-  FishOutline as FishIcon,
-  PawOutline as PawIcon,
-  BagOutline as BagOutlineIcon,
-  // BookmarkOutline,
-  // CaretDownOutline,
+  DesktopOutline,
+  FolderOpenOutline,
+  ReaderOutline,
+  PeopleOutline,
+  GlobeOutline,
 } from '@vicons/ionicons5'
+import {useI18n} from 'vue-i18n'
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
-const menuOptions: MenuOption[] = [
+export default defineComponent({
+  emits: ['clickMenu'],
+  setup(props,{ emit }) {
+    const {t} = useI18n()
+
+    const menuOptions: MenuOption[] = [
   {
-    label: '鱼',
-    key: 'fish',
-    icon: renderIcon(FishIcon),
+    label:() => t('nav.console'),
+    key: 'console',
+    icon: renderIcon(DesktopOutline),
+  },
+  {
+    label: () => t('nav.user'),
+    key: 'user-management',
+    icon: renderIcon(PeopleOutline),
     children: [
       {
-        label: '红烧',
-        key: 'braise',
-        children: [
-          {
-            label: '加辣',
-            key: 'spicy',
-          },
-        ],
+        label: () => t('nav.userInfo'),
+        key: 'userInfo',
       },
       {
-        label: '清蒸',
-        key: 'steamed',
-        children: [
-          {
-            label: '不要葱',
-            key: 'no-green-onion',
-          },
-        ],
+        label: () => t('nav.roleInfo'),
+        key: 'roleInfo',
+      },
+      {
+        label: () => t('nav.menuInfo'),
+        key: 'menuInfo',
+      },
+      {
+        label: () => t('nav.userRole'),
+        key: 'userRoleInfo',
+      },
+      {
+        label: () => t('nav.roleMenu'),
+        key: 'roleMenuInfo',
       },
     ],
   },
   {
-    label: '熊掌',
-    key: 'bear-paw',
-    icon: renderIcon(PawIcon),
+    label:  () => t('nav.blog'),
+    key: 'blog-management',
+    icon: renderIcon(ReaderOutline),
     children: [
       {
-        label: '保护野生动物',
-        key: 'protect-wild-animals',
+        label:  () => t('nav.blogList'),
+        key: 'blogList',
+      },
+      {
+        label: () => t('nav.blogType'),
+        key: 'blogType',
+      },
+      {
+        label: () => t('nav.blogComment'),
+        key: 'blogComment',
+      },
+      {
+        label: () => t('nav.blogCollect'),
+        key: 'blogCollect',
+      },
+      {
+        label: () => t('nav.blogGetLike'),
+        key: 'blogGetLike',
       },
     ],
   },
   {
-    label: '两个都要',
-    key: 'both',
-    icon: renderIcon(BagOutlineIcon),
+    label: () => t('nav.website'),
+    key: 'website-management',
+    icon: renderIcon(GlobeOutline),
     children: [
       {
-        label: '鱼和熊掌不可兼得',
-        key: 'can-not',
+        label: () => t('nav.websiteList'),
+        key: 'websiteList',
+      },
+      {
+        label: () => t('nav.websiteType'),
+        key: 'websiteType',
+      },
+    ],
+  },
+  {
+    label: () => t('nav.resource'),
+    key: 'resource-management',
+    icon: renderIcon(FolderOpenOutline),
+    children: [
+      {
+        label: () => t('nav.fileInfo'),
+        key: 'fileInfo',
+      },
+      {
+        label: () => t('nav.fileType'),
+        key: 'fileType',
       },
     ],
   },
 ]
 
-export default defineComponent({
-  setup() {
+    function clickMenu(key: string) {
+      // console.log(key)
+      if (key) {
+        emit('clickMenu', key)
+      }
+    }
+    onMounted(()=>{
+      emit('clickMenu','console')
+    })
     return {
-      activeKey: ref<string | null>(null),
+      activeKey: ref<string | null>('console'),
       collapsed: ref(false),
       menuOptions,
-      defaultExpandedKeys: ['fish', 'braise'],
+      // defaultExpandedKeys: ['desktop', 'braise'],
+      clickMenu,
+      t
     }
   },
 })

@@ -8,7 +8,7 @@ const i18n = createI18n({
   messages: {
     zn,
     en
-  }
+  },
+  globalInjection:true
 })
-
 export default  i18n

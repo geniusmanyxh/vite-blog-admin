@@ -4,11 +4,7 @@
  * @vueCreate vue项目创建方式 vite
  */
 
- import {
-  createRouter,
-  createWebHistory,
-  RouteRecordRaw,
-} from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 /**
  * @description 定义路由模块
@@ -24,21 +20,102 @@ const routers: Array<RouteRecordRaw> = [
       {
         path: 'login',
         name: 'login',
-        component : () => import('../views/login/index.vue')
+        component: () => import('../views/login/index.vue'),
       },
       {
         path: 'register',
         name: 'register',
-        component : () => import('../views/register/index.vue')
+        component: () => import('../views/register/index.vue'),
       },
       {
         path: 'desktop',
         name: 'desktop',
         component: () => import('../views/desktop/index.vue'),
+        children: [
+          // =================首页控制台信息==========================
+          {
+            path: 'console',
+            name: 'console',
+            component: () => import('../views/console/index.vue'),
+          },
+          // =================用户路由信息==========================
+          {
+            path: 'userInfo',
+            name: 'userInfo',
+            component: () => import('../views/user/userInfo.vue'),
+          },
+          {
+            path: 'roleInfo',
+            name: 'roleInfo',
+            component: () => import('../views/user/roleInfo.vue'),
+          },
+          {
+            path: 'menuInfo',
+            name: 'menuInfo',
+            component: () => import('../views/user/menuInfo.vue'),
+          },
+          {
+            path: 'userRoleInfo',
+            name: 'userRoleInfo',
+            component: () => import('../views/user/userRoleInfo.vue'),
+          },
+          {
+            path: 'roleMenuInfo',
+            name: 'roleMenuInfo',
+            component: () => import('../views/user/roleMenuInfo.vue'),
+          },
+          // =================资源路由信息==========================
+          {
+            path: 'fileInfo',
+            name: 'fileInfo',
+            component: () => import('../views/resource/fileInfo.vue'),
+          },
+          {
+            path: 'fileType',
+            name: 'fileType',
+            component: () => import('../views/resource/fileType.vue'),
+          },
+          // =================网站路由信息==========================
+          {
+            path: 'websiteList',
+            name: 'websiteList',
+            component: () => import('../views/website/websiteList.vue'),
+          },
+          {
+            path: 'websiteType',
+            name: 'websiteType',
+            component: () => import('../views/website/websiteType.vue'),
+          },
+          // =================博客路由信息==========================
+          {
+            path: 'blogList',
+            name: 'blogList',
+            component: () => import('../views/blog/blogList.vue'),
+          },
+          {
+            path: 'blogType',
+            name: 'blogType',
+            component: () => import('../views/blog/blogType.vue'),
+          },
+          {
+            path: 'blogComment',
+            name: 'blogComment',
+            component: () => import('../views/blog/blogComment.vue'),
+          },
+          {
+            path: 'blogGetLike',
+            name: 'blogGetLike',
+            component: () => import('../views/blog/blogGetLike.vue'),
+          },
+          {
+            path: 'blogCollect',
+            name: 'blogCollect',
+            component: () => import('../views/blog/blogCollect.vue'),
+          },
+        ],
       },
     ],
   },
-
 ]
 
 /**

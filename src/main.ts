@@ -6,7 +6,6 @@ import router from './router'
 import i18n from './vuei18n'
 
 
-
 createApp(App)
 .use(router)
 .use(i18n)

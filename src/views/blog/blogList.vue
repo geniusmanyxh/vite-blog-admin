@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full flex items-center">
-    Copyright© 2023 天界程序员
+  <div>
+    blogList
   </div>
 </template>
 

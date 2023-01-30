@@ -1,8 +1,10 @@
 <template>
-  <div class="flex flex-row justify-between w-full h-full items-center ">
+  <div class="flex flex-row justify-between w-full h-full items-center">
     <!-- 设置系统logo -->
-    <div>logo     {{ t('hello') }}</div>
-
+    <div class="h-full flex items-center">
+      <n-image width="40" src="/vite.svg" preview-disabled /> 
+      <span class="hidden ml-1 sm:inline sm:text-xl"><b>{{ t('systemName') }}</b></span>
+    </div>
 
     <div class="header-right flex flex-row h-full items-center pr-5">
       <div @click="changeLanguage">
@@ -12,59 +14,57 @@
           </template>
           切换语言
         </n-tooltip>
-        
       </div>
 
-    <!-- Switch theme Color -->
-    <!-- <button @click=changeTheme>{{ currentTheme }}</button> -->
-    <div>
-      <n-switch v-model:value="themeActive" @update:value="changeTheme">
-      <template #checked-icon>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <n-icon :component="Bulb" />
+      <!-- Switch theme Color -->
+      <!-- <button @click=changeTheme>{{ currentTheme }}</button> -->
+      <div>
+        <n-switch v-model:value="themeActive" @update:value="changeTheme">
+          <template #checked-icon>
+            <n-tooltip trigger="hover">
+              <template #trigger>
+                <n-icon :component="Bulb" />
+              </template>
+              深色主题
+            </n-tooltip>
           </template>
-          深色主题
-        </n-tooltip>
-      </template>
-      <template #unchecked-icon>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <n-icon :component="BulbOutline" />
+          <template #unchecked-icon>
+            <n-tooltip trigger="hover">
+              <template #trigger>
+                <n-icon :component="BulbOutline" />
+              </template>
+              浅色主题
+            </n-tooltip>
           </template>
-          浅色主题
-        </n-tooltip>
-      </template>
-    </n-switch>
-    </div>
+        </n-switch>
+      </div>
 
-    <!-- 开启全屏 或者 退出全屏操作 -->
-    <!-- <button @click="toggleFull()">全屏</button> -->
-    <div @click="toggleFull()">
-      <n-tooltip trigger="hover">
-        <template #trigger>
-          <n-icon :component="!fullState ? Expand : Contract" :size="20"/>
-        </template>
-        {{ fullState ? '退出' : '打开' }}全屏
-      </n-tooltip>
+      <!-- 开启全屏 或者 退出全屏操作 -->
+      <!-- <button @click="toggleFull()">全屏</button> -->
+      <div @click="toggleFull()">
+        <n-tooltip trigger="hover">
+          <template #trigger>
+            <n-icon :component="!fullState ? Expand : Contract" :size="20" />
+          </template>
+          {{ fullState ? '退出' : '打开' }}全屏
+        </n-tooltip>
+      </div>
+      <!-- 个人头像 -->
+      <div>
+        <n-dropdown :options="options" :on-select="dropdownSelect">
+          <n-avatar
+            round
+            size="small"
+            src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
+          />
+        </n-dropdown>
+      </div>
     </div>
-    <!-- 个人头像 -->
-    <div>
-      <n-dropdown :options="options" :on-select="dropdownSelect">
-        <n-avatar
-      round
-      size="small"
-      src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-    />
-      </n-dropdown>
-    </div>
-    </div>
-    
   </div>
 </template>
 
 <script setup lang="ts">
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
 import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { DropdownOption, NIcon } from 'naive-ui'
@@ -121,7 +121,7 @@ const options = reactive([
   },
 ])
 
-const dropdownSelect = (key:number|string,opts:DropdownOption) => {
+const dropdownSelect = (key: number | string, opts: DropdownOption) => {
   console.log(key, opts)
   if (key === 'logout') {
     router.push('/login')
@@ -146,8 +146,8 @@ const changeLanguage = () => {
 // 切换主题颜色
 const themeActive = ref(false)
 const currentTheme = ref('深色')
-const changeTheme = (val: boolean) => {
-  console.log(val)
+const changeTheme = () => {
+  
   let themeParam: string = currentTheme.value === '深色' ? 'dark' : 'light'
   if (currentTheme.value === '深色') {
     currentTheme.value = '浅色'
@@ -159,7 +159,7 @@ const changeTheme = (val: boolean) => {
 </script>
 
 <style scoped lang="scss">
-.header-right > div{
+.header-right > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,7 +168,8 @@ const changeTheme = (val: boolean) => {
   cursor: pointer;
 
   &:hover {
-    background-color: rgba($color: #000000, $alpha: .2);
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    border-radius: 3px;
   }
 }
 </style>
