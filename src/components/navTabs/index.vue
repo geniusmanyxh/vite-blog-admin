@@ -13,9 +13,9 @@
     <n-tab
       v-for="panel in panels"
       :key="panel.path"
-      :tab="panel.title"
+      :tab="$t('nav.'+panel.title)"
       :name="panel.title"
-      :closable="panel.title !== '控制台'"
+      :closable="panel.title !== '控制台'&& panel.title !== 'console'"
     >     
     </n-tab>
     <template #prefix>
@@ -40,7 +40,7 @@ import { ChevronBack, ChevronForward } from '@vicons/ionicons5'
 
 interface meatType {
   preTitle:string;
-  title:string
+  title_key:string
 }
 
 interface tabType {
@@ -58,7 +58,7 @@ export default defineComponent({
     const nameRef = ref('控制台')
 
     const panelsRef = ref<tabType[]>([{
-      title: '控制台',
+      title: 'console',
       path: '/desktop/console'
     }])
 
@@ -78,7 +78,7 @@ export default defineComponent({
         const curMeta:meatType = curRoute.meta as unknown as meatType
 
         const tabObj: tabType = {
-          title: curMeta.title,
+          title: curMeta.title_key,
           path: curRoute.path
         }
 
@@ -121,9 +121,6 @@ export default defineComponent({
         nameRef.value = panelsRef.value[tabIdx + 1].title
         router.push(panelsRef.value[tabIdx + 1].path)
       }
-
-      // console.log(tabIdx)
-
     }
 
     const backToTab = () => {
@@ -135,9 +132,6 @@ export default defineComponent({
         nameRef.value = panelsRef.value[tabIdx - 1].title
         router.push(panelsRef.value[tabIdx - 1].path)
       }
-
-      // console.log(tabIdx)
-
     }
 
 

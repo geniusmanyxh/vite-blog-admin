@@ -39,7 +39,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/console/index.vue'),
             meta: {
               preTitle: '',
-              title: '控制台'
+              title: '控制台',
+              preTitle_key:'',
+              title_key:'console'
             }
           },
           // =================用户路由信息==========================
@@ -49,7 +51,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/user/userInfo.vue'),
             meta: {
               preTitle: '用户管理',
-              title: '用户信息'
+              title: '用户信息',
+              preTitle_key:'user',
+              title_key:'userInfo'
             }
           },
           {
@@ -58,7 +62,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/user/roleInfo.vue'),
             meta: {
               preTitle: '用户管理',
-              title: '角色信息'
+              title: '角色信息',
+              preTitle_key:'user',
+              title_key:'roleInfo'
             }
           },
           {
@@ -67,7 +73,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/user/menuInfo.vue'),
             meta: {
               preTitle: '用户管理',
-              title: '菜单信息'
+              title: '菜单信息',
+              preTitle_key:'user',
+              title_key:'menuInfo'
             }
           },
           {
@@ -76,7 +84,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/user/userRoleInfo.vue'),
             meta: {
               preTitle: '用户管理',
-              title: '用户角色信息'
+              title: '用户角色信息',
+              preTitle_key:'user',
+              title_key:'userRole'
             }
           },
           {
@@ -85,7 +95,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/user/roleMenuInfo.vue'),
             meta: {
               preTitle: '用户管理',
-              title: '角色菜单信息'
+              title: '角色菜单信息',
+              preTitle_key:'user',
+              title_key:'roleMenu'
             }
           },
           // =================资源路由信息==========================
@@ -95,7 +107,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/resource/fileInfo.vue'),
             meta: {
               preTitle: '资源管理',
-              title: '文件信息'
+              title: '文件信息',
+              preTitle_key:'resource',
+              title_key:'fileInfo'
             }
           },
           {
@@ -104,7 +118,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/resource/fileType.vue'),
             meta: {
               preTitle: '资源管理',
-              title: '文件类型'
+              title: '文件类型',
+              preTitle_key:'resource',
+              title_key:'fileType'
             }
           },
           // =================网站路由信息==========================
@@ -114,7 +130,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/website/websiteList.vue'),
             meta: {
               preTitle: '网站管理',
-              title: '网站列表'
+              title: '网站列表',
+              preTitle_key:'website',
+              title_key:'websiteList'
             }
           },
           {
@@ -123,7 +141,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/website/websiteType.vue'),
             meta: {
               preTitle: '网站管理',
-              title: '网站类型'
+              title: '网站类型',
+              preTitle_key:'website',
+              title_key:'websiteType'
             }
           },
           // =================博客路由信息==========================
@@ -133,7 +153,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/blog/blogList.vue'),
             meta: {
               preTitle: '博客管理',
-              title: '博客列表'
+              title: '博客列表',
+              preTitle_key:'blog',
+              title_key:'blogList'
             }
           },
           {
@@ -142,7 +164,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/blog/blogType.vue'),
             meta: {
               preTitle: '博客管理',
-              title: '博客分类'
+              title: '博客分类',
+              preTitle_key:'blog',
+              title_key:'blogType'
             }
           },
           {
@@ -151,7 +175,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/blog/blogComment.vue'),
             meta: {
               preTitle: '博客管理',
-              title: '博客评论'
+              title: '博客评论',
+              preTitle_key:'blog',
+              title_key:'blogComment'
             }
           },
           {
@@ -160,7 +186,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/blog/blogGetLike.vue'),
             meta: {
               preTitle: '博客管理',
-              title: '博客点赞'
+              title: '博客点赞',
+              preTitle_key:'blog',
+              title_key:'blogGetLike'
             }
           },
           {
@@ -169,7 +197,9 @@ const routers: Array<RouteRecordRaw> = [
             component: () => import('../views/blog/blogCollect.vue'),
             meta: {
               preTitle: '博客管理',
-              title: '博客收藏'
+              title: '博客收藏',
+              preTitle_key:'blog',
+              title_key:'blogCollect'
             }
           },
         ],

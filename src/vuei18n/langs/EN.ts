@@ -2,6 +2,7 @@ export default {
   hello: 'hello',
   systemName: 'ViteBlogAdmin',
   nav: {
+    curPath:'CurrentPath',
     console:'console',
     user: 'userManagement',
     userInfo: 'userInfo',

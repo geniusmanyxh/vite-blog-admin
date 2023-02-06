@@ -2,7 +2,8 @@ export default {
   hello: '你好',
   systemName: 'Vite博客管理系统',
   nav: {
-    console:'首页控制台',
+    curPath:'当前路径',
+    console:'控制台',
     user: '用户管理',
     userInfo: '用户信息',
     roleInfo: '角色信息',

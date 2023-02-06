@@ -129,15 +129,16 @@ const dropdownSelect = (key: number | string, opts: DropdownOption) => {
 }
 
 // 切换语言
-const currentLanguage = ref('English')
+const currentLanguage = ref('中文')
 const changeLanguage = () => {
   let langParam: string = currentLanguage.value === '中文' ? 'ZN' : 'EN'
   if (langParam === 'ZN') {
     currentLanguage.value = 'English'
-    locale.value = 'zn'
+    locale.value = 'en'
   } else {
     currentLanguage.value = '中文'
-    locale.value = 'en'
+    locale.value = 'zn'
+    
   }
 
   emit('switchLang', langParam)

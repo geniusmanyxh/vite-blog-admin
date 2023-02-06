@@ -1,10 +1,10 @@
 <template>
 
     <n-breadcrumb>
-      当前路径:
+      {{$t("nav.curPath")}}:
       <TransitionGroup name="breadcrumb"> 
         <n-breadcrumb-item v-for="(item,idx) of breadcrumbStr" :key="idx">
-          {{ item }}
+          {{ $t('nav.'+item) }}
         </n-breadcrumb-item>
       </TransitionGroup>
     </n-breadcrumb>
@@ -17,7 +17,9 @@ import { RouteRecordNormalized , useRoute, useRouter } from 'vue-router'
 
 interface meatType {
   preTitle:string;
-  title:string
+  title:string;
+  preTitle_key:string;
+  title_key:string
 }
 
 export default defineComponent({
@@ -26,7 +28,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const breadcrumbStr = ref(['控制台'])
+    const breadcrumbStr = ref<string[]>(['console'])
     const findRouteInfo = (path: string) => {
       if (path) {
         const routeList: RouteRecordNormalized[] = router.getRoutes()
@@ -36,8 +38,8 @@ export default defineComponent({
         }) as RouteRecordNormalized).meta as unknown as meatType
         // console.log(metaInfo)
         breadcrumbStr.value = []
-        if(metaInfo.preTitle) breadcrumbStr.value.push(metaInfo.preTitle)
-        breadcrumbStr.value.push(metaInfo.title)
+        if(metaInfo.preTitle_key) breadcrumbStr.value.push(metaInfo.preTitle_key)
+        breadcrumbStr.value.push(metaInfo.title_key)
       }
     }
 
