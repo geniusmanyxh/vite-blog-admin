@@ -17,10 +17,13 @@
 
           <n-layout :native-scrollbar="false">
             <n-layout-content>
-              <div style="padding: 5px 20px 20px 20px; min-height: 300px">
-                <Breadcrumb></Breadcrumb>
+              <NavTabs/> 
+                <Breadcrumb class="pl-2"></Breadcrumb>
+                <div style="padding: 5px 20px 20px 20px; min-height: 300px">
                 <RouterView />
               </div>
+          
+              
               <n-layout-footer style="height: 64px; padding: 24px" bordered>
                 <slot name="footer">
                   <my-footer></my-footer>

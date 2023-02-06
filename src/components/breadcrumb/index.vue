@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <n-breadcrumb>
       当前路径:
       <TransitionGroup name="breadcrumb"> 
@@ -8,7 +8,7 @@
         </n-breadcrumb-item>
       </TransitionGroup>
     </n-breadcrumb>
-  </div>
+  
 </template>
 
 <script lang="ts">
