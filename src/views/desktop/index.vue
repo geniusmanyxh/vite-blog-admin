@@ -17,7 +17,10 @@
 
           <n-layout :native-scrollbar="false">
             <n-layout-content>
-              <div style="padding: 24px; min-height: 300px"><RouterView /></div>
+              <div style="padding: 5px 20px 20px 20px; min-height: 300px">
+                <Breadcrumb></Breadcrumb>
+                <RouterView />
+              </div>
               <n-layout-footer style="height: 64px; padding: 24px" bordered>
                 <slot name="footer">
                   <my-footer></my-footer>
@@ -50,7 +53,7 @@ const router = useRouter()
 
 // 切换路由
 const clickMenu = (key: string) => {
-  console.log(key)
+  // console.log(key)
   if (key) {
     router.push({ name: key })
   }
