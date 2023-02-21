@@ -7,8 +7,8 @@
     :width="240"
     :collapsed="collapsed"
     show-trigger
-    @collapse="collapsed = true"
-    @expand="collapsed = false"
+    @collapse="switchCollapsed(true)"
+    @expand="switchCollapsed(false)"
   >
   <!-- {{ t('nav.console') }} -->
     <n-menu
@@ -40,9 +40,10 @@ function renderIcon(icon: Component) {
 }
 
 export default defineComponent({
-  emits: ['clickMenu'],
+  emits: ['clickMenu','getCollapsed'],
   setup(props,{ emit }) {
     const {t} = useI18n()
+    const collapsed = ref(false)
 
     const menuOptions: MenuOption[] = [
   {
@@ -136,6 +137,15 @@ export default defineComponent({
   },
 ]
 
+    function switchCollapsed (bool:boolean) {
+      collapsed.value = bool
+      if (bool) {
+        emit('getCollapsed',64)
+      }else{
+        emit('getCollapsed',240)
+      }
+    }
+
     function clickMenu(key: string) {
       // console.log(key)
       if (key) {
@@ -147,10 +157,11 @@ export default defineComponent({
     })
     return {
       activeKey: ref<string | null>('console'),
-      collapsed: ref(false),
+      collapsed,
       menuOptions,
       // defaultExpandedKeys: ['desktop', 'braise'],
       clickMenu,
+      switchCollapsed,
       t
     }
   },

@@ -12,14 +12,17 @@
         </n-layout-header>
         <n-layout position="absolute" style="top: 64px; bottom: 0px" has-sider>
           <slot name="sider">
-            <my-sider @click-menu="clickMenu" />
+            <my-sider @click-menu="clickMenu" @getCollapsed="getSiderWid"/>
           </slot>
 
           <n-layout :native-scrollbar="false">
+            <n-message-provider>
             <n-layout-content>
-              <NavTabs/> 
+                <div class="fixed z-50 bg-white shadow" :style="{width:`calc(100% - ${siderWid}px)`}">
+                  <NavTabs/> 
                 <Breadcrumb class="pl-2"></Breadcrumb>
-                <div style="padding: 5px 20px 20px 20px; min-height: 300px">
+                </div>
+              <div style="margin-top: 68px;padding: 5px 20px 20px 20px; min-height: 300px">
                 <RouterView />
               </div>
           
@@ -30,6 +33,7 @@
                 </slot>
               </n-layout-footer>
             </n-layout-content>
+          </n-message-provider>
           </n-layout>
         </n-layout>
         <!-- <n-layout-footer
@@ -53,6 +57,13 @@ import { zhCN, dateZhCN, enUS, dateEnUS } from 'naive-ui'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
+const siderWid = ref(240)
+
+const getSiderWid = (wid:number) => {
+  console.log(wid)
+  siderWid.value = wid
+}
 
 // 切换路由
 const clickMenu = (key: string) => {

@@ -4,7 +4,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Unocss from './config/unocss'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -32,7 +31,7 @@ export default defineConfig({
       // dirs:'src/mycomponents'
       dirs: ['src/components'],
     }),
-    Unocss(),
+    Unocss()
   ],
   // 这里变更一下端口
   server: {
