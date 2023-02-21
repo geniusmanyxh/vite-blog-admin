@@ -36,7 +36,7 @@
 import { defineComponent } from 'vue'
 import { useRoute, useRouter, RouteRecordNormalized} from 'vue-router'
 import { ChevronBack, ChevronForward } from '@vicons/ionicons5'
-
+import { useMessage } from 'naive-ui'
 
 interface meatType {
   preTitle:string;
@@ -54,6 +54,7 @@ export default defineComponent({
 
     const route = useRoute()
     const router = useRouter()
+    const message = useMessage();
 
     const nameRef = ref('控制台')
 
@@ -117,9 +118,11 @@ export default defineComponent({
 
       const tabLen = panelsRef.value.length
 
-      if (tabIdx + 1 < tabLen) {
+      if ((tabIdx + 1) < tabLen) {
         nameRef.value = panelsRef.value[tabIdx + 1].title
         router.push(panelsRef.value[tabIdx + 1].path)
+      } else if ((tabIdx + 1) === tabLen) {
+        message.warning('这已经是最后一个导航栏了')
       }
     }
 
@@ -128,9 +131,11 @@ export default defineComponent({
         return v.title === nameRef.value
       })
 
-      if (tabIdx + 1 > 1) {
+      if ((tabIdx + 1) > 1) {
         nameRef.value = panelsRef.value[tabIdx - 1].title
         router.push(panelsRef.value[tabIdx - 1].path)
+      } else if ((tabIdx + 1) === 1) {
+        message.warning('这已经是第一个导航栏了')
       }
     }
 
