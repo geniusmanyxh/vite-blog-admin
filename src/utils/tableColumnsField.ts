@@ -2,14 +2,14 @@
 import type { DataTableColumns } from 'naive-ui'
 
 // 表格操作按钮类型
-type TableActionBtn = 'look' | 'del' | 'edit'
-type TableActionBtnType = 'info' | 'error' | 'warning'
+// type TableActionBtn = 'look' | 'del' | 'edit'
+// type TableActionBtnType = 'info' | 'error' | 'warning'
 
-interface ITableColumnsBtn {
-  key: TableActionBtn
-  title:string
-  type:TableActionBtnType
-}
+// interface ITableColumnsBtn {
+//   key: TableActionBtn
+//   title:string
+//   type:TableActionBtnType
+// }
 // 表格操作按钮
 // const tableActionBtn: TableActionBtn[] = ['look','del','edit'];
 
