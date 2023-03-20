@@ -18,7 +18,8 @@
           <n-layout :native-scrollbar="false">
             <n-message-provider>
             <n-layout-content>
-                <div class="fixed z-50 bg-white shadow" :style="{width:`calc(100% - ${siderWid}px)`}">
+                <div class="fixed z-50 transition shadow" :style="{width:`calc(100% - ${siderWid}px)`}"
+                :class="!theme?'bg-white':'bg-black'">
                   <NavTabs/> 
                 <Breadcrumb class="pl-2"></Breadcrumb>
                 </div>

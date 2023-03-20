@@ -51,7 +51,7 @@
       </div>
       <!-- 个人头像 -->
       <div>
-        <n-dropdown :options="options" :on-select="dropdownSelect">
+        <n-dropdown :options="options" :on-select="dropdownSelect" trigger="click">
           <n-avatar
             round
             size="small"
@@ -69,13 +69,13 @@ import type { Component } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { DropdownOption, NIcon } from 'naive-ui'
 import { toggleFull, isFull } from 'tj-jstools'
+// import Gitee from '../../../assets/gitee.svg'
 import {
   Bulb,
   BulbOutline,
   Expand,
   Contract,
-  PersonCircleOutline as UserIcon,
-  Pencil as EditIcon,
+  LogoGithub,
   LogOutOutline as LogoutIcon,
 } from '@vicons/ionicons5'
 
@@ -105,14 +105,14 @@ const renderIcon = (icon: Component) => {
 
 const options = reactive([
   {
-    label: '用户资料',
-    key: 'profile',
-    icon: renderIcon(UserIcon),
+    label: 'github地址',
+    key: 'github',
+    icon: renderIcon(LogoGithub),
   },
   {
-    label: '编辑用户资料',
-    key: 'editProfile',
-    icon: renderIcon(EditIcon),
+    label: 'gitee地址',
+    key: 'gitee',
+    icon: undefined,
   },
   {
     label: '退出登录',
@@ -125,6 +125,18 @@ const dropdownSelect = (key: number | string, opts: DropdownOption) => {
   console.log(key, opts)
   if (key === 'logout') {
     router.push('/login')
+  } else if (key === 'github') {
+    let el = document.createElement('a');
+    el.href = 'https://github.com/geniusmanyxh/vite-blog-admin'
+    el.target = '_bank'
+    el.click()
+    el.remove()
+  } else {
+    let el = document.createElement('a');
+    el.href = 'https://gitee.com/geniusman/vite-blog-admin'
+    el.target = '_bank'
+    el.click()
+    el.remove()
   }
 }
 

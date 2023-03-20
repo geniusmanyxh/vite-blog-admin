@@ -27,15 +27,17 @@
     </n-input-group>
       </div>
     </div>
-    <n-data-table :columns="columns" :data="data" :pagination="pagination" />
+    <n-data-table :scroll-x="1800" striped :columns="columns" :data="data" :pagination="pagination" />
   </div>
 </template>
 
 <script lang="ts">
 import { NButton, useMessage } from 'naive-ui'
-import type { DataTableColumns } from 'naive-ui'
+import type { DataTableColumns, } from 'naive-ui'
 import { Add , Trash,Search} from '@vicons/ionicons5'
 import { UserInfoRowData , userInfoColumns} from '../../utils/tableColumnsField'
+
+const tableColumns = ['look','del','edit']
 
 const createColumns = ({
   sendMail,
@@ -59,8 +61,8 @@ const createColumns = ({
       title: 'Action',
       key: 'actions',
       render(row) {
-        return [
-          h(
+        const btn = tableColumns.map((v)=>{
+         return h(
             NButton,
             {
               style: {
@@ -69,37 +71,22 @@ const createColumns = ({
               size: 'small',
               onClick: () => sendMail(row),
             },
-            { default: () => 'Send Email' }
-          ),
-          h(
-            NButton,
-            {
-              style: {
-                marginRight: '6px',
-              },
-              size: 'small',
-              onClick: () => sendMail(row),
-            },
-            { default: () => 'Send Email' }
-          ),
-          h(
-            NButton,
-            {
-              size: 'small',
-              onClick: () => sendMail(row),
-            },
-            { default: () => 'Send Email' }
-          ),
-        ]
+            { default: () => v }
+          );
+        })
+        return btn;
       },
     },
   ]
 }
 
-const createData = (): UserInfoRowData[] => [
-  {
+const createData = (): UserInfoRowData[] => {
+  const arr1 = []
+
+  for (let i = 0; i < 10; i++) {
+    arr1.push( {
     key: 0,
-    username: 'John Brown',
+    username: 'John Brown' + i,
   password: 'string',
   nick_name: 'string',
   phone_num: 'string',
@@ -115,9 +102,12 @@ const createData = (): UserInfoRowData[] => [
   editor: 'string',
   create_time: 'string',
   update_time: 'string'
-  },
+  })
+    
+  }
 
-]
+  return arr1
+}
 
 export default defineComponent({
   setup() {
@@ -127,7 +117,12 @@ export default defineComponent({
     const paginationReactive = reactive({
       page: 2,
       pageSize: 5,
-      showSizePicker: true,
+      showSizePicker: true, 
+      showQuickJumper: true,  
+      prefix ({itemCount}:{itemCount:unknown}) {
+      
+        return `Total is ${itemCount}.`
+      },
       pageSizes: [2,3, 5, 7],
       onChange: (page: number) => {
         paginationReactive.page = page
